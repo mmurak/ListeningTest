@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSON editor</title>
+    <link rel="shortcut icon" href="kiwi-bird.png">
+  </head>
+  <body>
+    <form action="#" name="FileEntry">
+      <input type="file" id="JSONFile" /><br/>
+      <a id="osf" href="#" download="edited.json" onclick="outFile()">保存はここをクリック</a>
+    </form>
+    <div id=dArea></div>
+
+<script type="text/javascript">
+const cAudioResource = "audioResource";
+const cChunks = "chunks";
+var jdata;
+
+// file reading procedure
+window.addEventListener('DOMContentLoaded', function () {
+    var obj1 = document.getElementById("JSONFile");
+    //ダイアログでファイルが選択された時
+    obj1.addEventListener("change", function (evt) {
+      var file = evt.target.files;
+      //FileReaderの作成
+      var reader = new FileReader();
+      //テキスト形式で読み込む
+      reader.readAsText(file[0]);
+      //読込終了後の処理
+      reader.onload = function (ev) {
+        //テキストエリアに表示する
+        var da = document.getElementById("dArea");
+        while (da.firstChild) {
+          da.removeChild(da.lastChild)
+        }
+        jdata = JSON.parse(reader.result);
+        for (i = 0; i < jdata.length; i++) {
+          da.append(document.createTextNode("Audio File Name: "));
+          da.appendChild(createTextField("au", i, 0, 40, jdata[i][cAudioResource]));
+          chunks = jdata[i][cChunks];
+          var fNo = 0;
+          for (j = 0; j < chunks.length; j++) {
+            da.appendChild(document.createElement("br"));
+            fNo += 1;
+            var cmplx = orNotToBe(chunks[j]).match(/^([\d\.]+):([\d\.]+):(.*)$/);
+            da.appendChild(createTextField("fs", i, j, 10, cmplx[1]));
+            da.appendChild(createTextField("fe", i, j, 10, cmplx[2]));
+            da.appendChild(createTextField("fd", i, j, 100, cmplx[3]));
+          }
+        }
+     }
+    }, false);
+ });
+
+function createID(id, ano, lno) {
+  return id + ("000"+ano).slice(-3) + ("000"+lno).slice(-3);
+}
+
+function createTextField(id, ano, lno, size, data) {
+  var elem = document.createElement("input");
+  elem.type = "text";
+  elem.id = createID(id, ano, lno);
+  elem.size = size;
+  elem.value = data;
+  return elem;
+}
+
+function toBe(string) {
+  const codeUnits = new Uint16Array(string.length);
+  for (let i = 0; i < codeUnits.length; i++) {
+    codeUnits[i] = string.charCodeAt(i);
+  }
+  return btoa(String.fromCharCode(...new Uint8Array(codeUnits.buffer)));
+}
+
+function orNotToBe(ec) {
+  binary = atob(ec)
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return String.fromCharCode(...new Uint16Array(bytes.buffer));
+}
+
+function outFile() {
+  for(i = 0; i < jdata.length; i++) {
+    jdata[i][cAudioResource] = document.getElementById(createID("au", i, 0)).value;
+    var chnk = jdata[i][cChunks];
+    for (j = 0; j < chnk.length; j++) {
+      var startTime = document.getElementById(createID("fs", i, j)).value;
+      var endTime = document.getElementById(createID("fe", i, j)).value;
+      var line = document.getElementById(createID("fd", i, j)).value;
+//      console.log(startTime + ":" + endTime + ":" + line);
+      jdata[i][cChunks][j] = toBe(startTime + ":" + endTime + ":" + line);
+    }
+  }
+  var contents = JSON.stringify(jdata, null, "  ");
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+  var blob = new Blob([ bom, contents ], { "type" : "text/plain" });
+  if (window.navigator.msSaveBlob) { 
+    window.navigator.msSaveBlob(blob, "edited.json"); 
+    window.navigator.msSaveOrOpenBlob(blob, "edited.json"); 
+  } else {
+    document.getElementById("osf").href = window.URL.createObjectURL(blob);
+  }
+}
+
+
+// -->
+</script>
+</body>
+</html>
