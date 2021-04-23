@@ -7,7 +7,7 @@
 https://mmurak.github.io/ListeningTest/LTengine.html?SC=YES&Q=Sample
 
 
-1. 作問プログラム編
+I. 作問プログラム編
 
 　《起動方法》
 
@@ -43,7 +43,7 @@ https://mmurak.github.io/ListeningTest/LTengine.html?SC=YES&Q=Sample
 　　　　なお、音源ファイルと、この .json ファイルの2ファイルがテスト一式となります。
 
 
-2. テスト実行プログラム編
+II. テスト実行プログラム編
 
 　《テスト実行プログラムに必要となる環境》
 
