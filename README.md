@@ -50,7 +50,7 @@ https://mmurak.github.io/ListeningTest/LTengine.html?SC=YES&Q=Sample
 1. テスト実行プログラムはhttp（またはhttps）プロトコルによるネットワークアクセスが必要です。このためどこかのサーバー上に環境を用意します。
 2. http（またはhttps）でアクセスできる場所に以下のファイルを配置します。
 * LTengine.html　：　テストがアクセスするページ本体です。
-* kiwi-bird　：　png ブラウザーのタブに表示されるアイコンです。
+* kiwi-bird.png　：　ブラウザーのタブに表示されるアイコンです。
 * praise.css　：　全問正解時に表示される「ご褒美機能」の定義ファイルです。
 * scripts/listeningtest.js　：　テストプログラム本体です。
 * scripts/wavesurfer.js　：　音声の再生に使用するライブラリーです。
