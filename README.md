@@ -14,9 +14,9 @@ https://mmurak.github.io/ListeningTest/LTengine.html?SC=YES&Q=Sample
 　　なお、このプログラムは必要なファイルをダウンロードしておけば、ローカル環境でも利用可能です。
 
 　　必要なファイルは以下の通りです。
-　　* LTmaker.html： プログラム本体
-　　* kiwi-bird.png： ブラウザーのタブに表示されるアイコン画像
-　　* scripts/wavesurfer.js： 音声関連の処理をするライブラリー（ローカル環境にプログラム一式をダウンロードする場合は、LTmaker.htmlを配置したディレクトリの直下にscriptsというディレクトリを作成し、その中にwavesurfer.jsを格納してください）。
+* LTmaker.html： プログラム本体
+* kiwi-bird.png： ブラウザーのタブに表示されるアイコン画像
+* scripts/wavesurfer.js： 音声関連の処理をするライブラリー（ローカル環境にプログラム一式をダウンロードする場合は、LTmaker.htmlを配置したディレクトリの直下にscriptsというディレクトリを作成し、その中にwavesurfer.jsを格納してください）。
 
 　　あとは（当たり前ですが ^^;）音源となるファイルが必要です。
 
@@ -38,12 +38,12 @@ https://mmurak.github.io/ListeningTest/LTengine.html?SC=YES&Q=Sample
 　《テスト実行プログラムに必要となる環境》
 　　(1). テスト実行プログラムはhttp（またはhttps）プロトコルによるネットワークアクセスが必要です。このためどこかのサーバー上に環境を用意します。
 　　(2). http（またはhttps）でアクセスできる場所に以下のファイルを配置します。
-　　　LTengine.html　：　テストがアクセスするページ本体です。
-　　　kiwi-bird　：　png ブラウザーのタブに表示されるアイコンです。
-　　　praise.css　：　全問正解時に表示される「ご褒美機能」の定義ファイルです。
-　　　scripts/listeningtest.js　：　テストプログラム本体です。
-　　　scripts/wavesurfer.js　：　音声の再生に使用するライブラリーです。
-　　　scripts/praise.js　：　全問正解時に表示される「ご褒美機能」のプログラムです。
+* LTengine.html　：　テストがアクセスするページ本体です。
+* kiwi-bird　：　png ブラウザーのタブに表示されるアイコンです。
+* praise.css　：　全問正解時に表示される「ご褒美機能」の定義ファイルです。
+* scripts/listeningtest.js　：　テストプログラム本体です。
+* scripts/wavesurfer.js　：　音声の再生に使用するライブラリーです。
+* scripts/praise.js　：　全問正解時に表示される「ご褒美機能」のプログラムです。
 　　(3). 作問プログラムで作成した.jsonファイルと音源ファイルを resources ディレクトリに格納します。
 
 　《使用方法》
