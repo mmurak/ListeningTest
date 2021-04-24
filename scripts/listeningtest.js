@@ -2,9 +2,9 @@
 const directory = "./resources/";
 const delimOpen = "\\(\\(";
 const delimClose = "\\)\\)";
-const regexp = new RegExp("(.*?)(" + delimOpen + ")(.+?)(" + delimClose + ")(.*)$");
-const yaRegexp = /^(\s*)(\S+)(.*)$/;
-const jsonRegexp = /^([\d\.]+):([\d\.]+):(.*)$/;
+const regexp = new RegExp("(.*?)(" + delimOpen + ")(.+?)(" + delimClose + ")(.*)$", "m");
+const yaRegexp = /^(\s*)(\S+)(.*)$/m;
+const jsonRegexp = /^([\d\.]+):([\d\.]+):(.*)$/m;
 
 var parmList = null;
 var data;
