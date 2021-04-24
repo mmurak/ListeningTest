@@ -22,7 +22,8 @@ function convertItems(parm) {
     }
     result += tmatch[1];
     seq += 1;
-    var chkf = "onBlur=\"festival('" + tmatch[2] + "', " + seq + ");\"";
+    var quoteEscape = tmatch[2].replaceAll("'", "\\'");
+    var chkf = "onBlur=\"festival('" + quoteEscape + "', " + seq + ");\"";
     result += '<input type="text" id="t' + seq + '" autocomplete="off" size="4" value="" onFocus="this.select();"  onInput="inputChar(' + seq + ');" ' + chkf + '>';
     result += '<span id="s' + seq + '" style="display:none">';
     result += tmatch[2];
